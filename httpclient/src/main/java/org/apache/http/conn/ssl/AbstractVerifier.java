@@ -27,6 +27,15 @@
 
 package org.apache.http.conn.ssl;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.apache.http.conn.util.InetAddressUtils;
+import org.apache.http.util.Args;
+
+import javax.net.ssl.SSLException;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.SSLSocket;
+import javax.security.auth.x500.X500Principal;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.cert.Certificate;
@@ -35,16 +44,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
-
-import javax.net.ssl.SSLException;
-import javax.net.ssl.SSLSession;
-import javax.net.ssl.SSLSocket;
-import javax.security.auth.x500.X500Principal;
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-import org.apache.http.conn.util.InetAddressUtils;
-import org.apache.http.util.Args;
 
 /**
  * Abstract base class for all standard {@link X509HostnameVerifier}
@@ -123,8 +122,8 @@ public abstract class AbstractVerifier implements X509HostnameVerifier {
             verify(host, x509);
             return true;
         } catch(final SSLException ex) {
-            if (log.isDebugEnabled()) {
-                log.debug(ex.getMessage(), ex);
+            if (true) {
+                log.info(ex.getMessage(), ex);
             }
             return false;
         }
